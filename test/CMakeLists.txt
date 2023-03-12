@@ -12,10 +12,12 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(ExampleTest CommandTest.cpp)
+add_executable(ExampleTest CommandTest.cpp SmartHomeTest.cpp)
 target_link_libraries(ExampleTest
     GTest::gtest_main
+    GTest::gmock_main
     command
+    smart_home
 )
 
 include(GoogleTest)

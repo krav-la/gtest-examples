@@ -7,6 +7,7 @@ set(MYAPP_GTEST_TAG v1.13.0 CACHE STRING "Latest googletest stable version")
 set(CMAKE_CXX_STANDARD 14)
 
 add_subdirectory(Command)
+add_subdirectory(SmartHome)
 
 if(MYAPP_BUILD_BINARY)
     add_subdirectory(src)

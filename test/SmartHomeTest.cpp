@@ -1,10 +1,23 @@
-#include <gtest/gtest.h>
+#include "gtest/gtest.h"
+#include "gmock/gmock.h"
+#include "LightControlMock.h"
 #include "SmartHome.h"
-#include "MockLightControl.h"
 
-TEST(SmartHomeTest, ResetLight)
+using ::testing::InSequence;
+
+TEST(SmartHomeTest, LightReset)
 {
-    MockLightControl ligthControl;
-    SmartHomev2 smartHome;
-    smartHome.lightReset(ligthControl)
+    LightControlMock lctlMocked;
+    SmartHome smartHome;
+
+    EXPECT_CALL(lctlMocked, switchLight(true))
+        .Times(4);
+        .WillOnce(1)
+        .WillOnce(3)
+        .WillRepeatedly(Return(5))
+    EXPECT_CALL(lctlMocked, switchLight(false))
+        .Times(1);
+
+    smartHome.lightReset(lctlMocked);
 }
+
